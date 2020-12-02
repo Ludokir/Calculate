@@ -42,4 +42,5 @@ def sym(e):
         root.destroy()
 
 
+root.bind('<Key>', sym)
 root.mainloop()

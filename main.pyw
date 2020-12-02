@@ -38,6 +38,8 @@ def calculation(key):
 
 def sym(e):
     e_key = e.keysym
+    if e_key == 'Escape':
+        root.destroy()
 
 
 root.mainloop()

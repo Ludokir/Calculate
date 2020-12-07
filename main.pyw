@@ -53,7 +53,19 @@ def calculation(key):
         num = calculator.get()
         calculator.delete(0, END)
         calculator.insert(0, f'{num}² = {result}')
-
+    elif key == '1/x':
+        result = 1 / float(calculator.get())
+        num = calculator.get()
+        calculator.delete(0, END)
+        calculator.insert(0, f'1/{num} = {result}')
+    elif key == '+/-':
+        if calculator.get()[0] == '-':
+            calculator.delete(0)
+        elif calculator.get()[0] == '+':
+            calculator.delete(0)
+            calculator.insert(0, '-')
+        else:
+            calculator.insert(0, '-')
     else:
         calculator.insert(END, key)
 

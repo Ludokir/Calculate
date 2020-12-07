@@ -29,11 +29,33 @@ calculator.grid(row=0, columnspan=4, sticky=W + E, ipady=4)
 
 
 def calculation(key):
-    try:
-        result = eval(calculator.get())
-    except (ZeroDivisionError, SyntaxError, IndexError, ValueError, NameError):
+    calculator.focus()
+    if key == '=':
+        try:
+            result = eval(calculator.get())
+            calculator.insert(END, f' = {result}')
+        except (ZeroDivisionError, SyntaxError, IndexError, ValueError, NameError):
+            calculator.delete(0, END)
+            calculator.insert(0, 'error')
+    elif key == 'C':
         calculator.delete(0, END)
-        calculator.insert(0, 'error')
+    elif key == '%':
+        result = eval(calculator.get()) / 100
+        calculator.delete(0, END)
+        calculator.insert(0, str(result))
+    elif key == '√':
+        result = sqrt(float(calculator.get()))
+        num = calculator.get()
+        calculator.delete(0, END)
+        calculator.insert(0, f'√{num} = {result}')
+    elif key == 'x²':
+        result = float(calculator.get()) ** 2
+        num = calculator.get()
+        calculator.delete(0, END)
+        calculator.insert(0, f'{num}² = {result}')
+
+    else:
+        calculator.insert(END, key)
 
 
 def sym(e):
